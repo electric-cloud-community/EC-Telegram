@@ -5,7 +5,7 @@ pluginName: EC-Telegram
 description: Send notifications using Telegram API
 version: 1.0.0
 author: ahorodchuk
-authorUrl: http://google.com/
+authorUrl: https://cloudbees.com/
 category: Notifications
 
 # This is a declaration for the plugin configuration

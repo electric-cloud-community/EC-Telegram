@@ -1,0 +1,21 @@
+overview: |
+  Telegram is a popular messenger with a rich support of bot actions (Payments, Games, Callbacks).
+  As the Flow is too heavy to run a realtime bot, the only useful purpose is notifications sending.
+  You can send a notifications either to a chat (one-to-one) with user, or to a channel (one-to-many).
+
+knownIssues: |
+  <ul>
+    <li>Telegram API clarifies that you can use '@channelusername' as a receiver, but actually you should use your link's name e.g. when it's 'https://t.me/my_channel', use '@my_channel'</li>
+  </ul>
+
+proceduresGrouping:
+  groups:
+    - name: Notification
+      description: Sending something to the user.
+      procedures:
+        - Send Notification
+
+chapters:
+  - name: 'How to use it?'
+    file: usage.md
+    place: 'after overview'

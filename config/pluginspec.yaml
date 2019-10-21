@@ -1,0 +1,96 @@
+# This is default sample specification
+# Feel free to change it
+# Call ecpdk showdoc pluginspec to see the list of available fields and their description
+pluginName: EC-Telegram
+description: Send notifications using Telegram API
+version: 1.0.0
+author: ahorodchuk
+authorUrl: http://google.com/
+category: Notifications
+
+# This is a declaration for the plugin configuration
+configuration:
+  # Shell to be used for checking connection
+  parameters:
+    - name: config
+      type: entry
+      label: Configuration Name
+      required: true
+      documentation: The name for the created configuration
+    - name: desc
+      type: entry
+      label: Description
+      required: false
+      documentation: Description for the configuration
+    - name: endpoint
+      type: entry
+      label: Telegram Bot API
+      required: true
+      documentation: The URL to request the updates
+      value: https://api.telegram.org/
+    - name: credential
+      type: credential
+      credentialType: secret
+      label: API Token
+      userNameLabel: You're not supposed to see this field
+      required: true
+      passwordLabel: Token
+      documentation: Bot API token (request one from @BotFather)
+    - name: checkConnection
+      label: Check Connection?
+      type: checkbox
+      checkedValue: true
+      uncheckedValue: false
+      initiallyChecked: 1
+    - name: debugLevel
+      # This parameter name "debugLevel" is supported by ECPDF Logger out of the box
+      label: Debug Level
+      type: select
+      required: 0
+      value: 0
+      options:
+        - name: Info
+          value: 0
+        - name: Debug
+          value: 1
+        - name: Trace
+          value: 2
+#  rest:
+#    endpointDescription: Telegram API endpoint
+#    endpointLabel: REST Endpoint
+#    checkConnectionUri: /user
+#    authSchemes:
+#      query:
+#        userNameLabel: sample
+#        passwordLabel: sample
+#        description: sample
+#        checkConnectionUri: /{{credential.token}}/getMe
+#        credentialLabel: Token
+  checkConnection: true
+  customCheckConnection: true
+
+procedures:
+  - name: Send Notification
+    description: Sends a simple text message
+    hasConfig: true
+    parameters:
+      - name: chatId
+        documentation: Message receiver (@channel_id or the unique User ID)
+        type: entry
+        propertyReference: /plugins/@PLUGIN_NAME@/project/recieversCache
+        required: true
+        label: Receiver
+      - name: text
+        documentation: Text of the message
+        type: textarea
+        required: true
+        label: Text
+      - name: silent
+        documentation: Users will receive a notification with no sound.
+        type: checkbox
+        initiallyChecked: false
+        checkedValue: 1
+        uncheckedValue: 0
+        required: false
+        label: Silent notification
+    shell: ec-perl

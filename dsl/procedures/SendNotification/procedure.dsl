@@ -1,14 +1,16 @@
 // This procedure.dsl was generated automatically
-// === procedure_autogen starts ===
-procedure 'Send Notification', description: 'Sends a simple text message', {
+// DO NOT EDIT THIS BLOCK === procedure_autogen starts ===
+procedure 'Send Notification', description: '''Sends a simple text message''', {
 
     step 'Send Notification', {
         description = ''
         command = new File(pluginDir, "dsl/procedures/SendNotification/steps/SendNotification.pl").text
+        // TODO altered shell
         shell = 'ec-perl'
 
+        postProcessor = '''$[/myProject/perl/postpLoader]'''
     }
-// === procedure_autogen ends, checksum: 0a2859e740efc7ab5b51e75d9f1904b4 ===
+// DO NOT EDIT THIS BLOCK === procedure_autogen ends, checksum: c7f1c1967bb796fb8c6d9d5ffd5e963b ===
 // Do not update the code above the line
 // procedure properties declaration can be placed in here, like
 // property 'property name', value: "value"

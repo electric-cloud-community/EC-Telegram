@@ -1,13 +1,12 @@
 
-// === configuration starts ===
-// This part is auto-generated and will be regenerated upon subsequent updates
+// DO NOT EDIT THIS BLOCK === configuration starts ===
 procedure 'CreateConfiguration', description: 'Creates a plugin configuration', {
 
     step 'checkConnection',
         command: new File(pluginDir, "dsl/procedures/CreateConfiguration/steps/checkConnection.pl").text,
         errorHandling: 'abortProcedure',
         shell: 'ec-perl',
-        condition: '$[/javascript myJob.checkConnection == "true"]'
+        condition: '$[/javascript myJob.checkConnection == "true" || myJob.checkConnection == "1"]'
 
     step 'createConfiguration',
         command: new File(pluginDir, "dsl/procedures/CreateConfiguration/steps/createConfiguration.pl").text,
@@ -19,6 +18,6 @@ procedure 'CreateConfiguration', description: 'Creates a plugin configuration', 
         timeLimitUnits: 'minutes'
 
     property 'ec_checkConnection', value: ''
-// === configuration ends, checksum: f0b384fd8177fc7f2495e0f70e09049c ===
+// DO NOT EDIT THIS BLOCK === configuration ends, checksum: b014b0643b8b6b4a90b3d1745039da70 ===
 // Place your code below
 }

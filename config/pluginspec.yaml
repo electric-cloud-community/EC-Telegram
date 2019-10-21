@@ -1,12 +1,13 @@
 # This is default sample specification
 # Feel free to change it
 # Call ecpdk showdoc pluginspec to see the list of available fields and their description
-pluginName: EC-Telegram
-description: Send notifications using Telegram API
-version: 1.0.0
-author: ahorodchuk
-authorUrl: https://cloudbees.com/
-category: Notifications
+pluginInfo:
+  pluginName: EC-Telegram
+  description: Send notifications using Telegram API
+  version: 1.0.0
+  author: ahorodchuk
+  authorUrl: https://cloudbees.com/
+  category: Notifications
 
 # This is a declaration for the plugin configuration
 configuration:

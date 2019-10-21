@@ -3,7 +3,7 @@
     Please not not edit this file manually as it will be regenerated.
 -->
 <editor>
-  <help>/commander/pages/@PLUGIN_NAME@/help?s=Administration&amp;amp;ss=Plugins#SendNotification</help>
+  <help>/commander/pages/@PLUGIN_NAME@/help?s=Administration&amp;ss=Plugins#SendNotification</help>
   <formElement>
     <type>entry</type>
     <property>config</property>
@@ -19,7 +19,7 @@
     <required>1</required>
     <documentation>Message receiver (@channel_id or the unique User ID)</documentation>
     <label>Receiver:</label>
-    <propertyReference>/plugins/@PLUGIN_NAME@/project/recieversCache</propertyReference>
+    <propertyReference type='property'>/plugins/@PLUGIN_NAME@/project/recieversCache</propertyReference>
   </formElement>
   <formElement>
     <type>textarea</type>

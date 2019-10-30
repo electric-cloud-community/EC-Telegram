@@ -4,7 +4,7 @@
 pluginInfo:
   pluginName: EC-Telegram
   description: Send notifications using Telegram API
-  version: 1.0.0
+  version: 1.1.0
   author: ahorodchuk
   authorUrl: https://cloudbees.com/
   category: Notifications
@@ -70,6 +70,11 @@ configuration:
   checkConnection: true
   customCheckConnection: true
 
+
+restClient:
+  userAgent: EC-Telegram Flow Plugin
+  language: perl
+
 procedures:
   - name: Send Notification
     description: Sends a simple text message
@@ -95,3 +100,41 @@ procedures:
         required: false
         label: Silent notification
     shell: ec-perl
+
+  - name: Send Sticker
+    description: Sends a sticker to the specified chat
+    hasConfig: true
+    shell: ec-perl
+    restProcedureInfo:
+      httpMethod: POST
+      methodName: sendSticker
+      url: '/bot((token))/sendSticker'
+    parameters:
+      - name: chatId
+        documentation:  Message receiver (@channel_id or the unique User ID)
+        type: entry
+        propertyReference: /plugins/@PLUGIN_NAME@/project/recieversCache
+        required: true
+        label: Receiver
+        restParamInfo:
+          name: chat_id
+          in: body
+      - name: stickerId
+        documentation: Unique file ID of the sticker to be sent
+        type: textarea
+        required: true
+        label: Sticker ID
+        restParamInfo:
+          name: sticker
+          in: body
+      - name: silent
+        documentation: Sends the message silently. Users will receive a notification with no sound.
+        type: checkbox
+        initiallyChecked: false
+        checkedValue: 'true'
+        uncheckedValue: 'false'
+        required: false
+        label: Silent notification
+        restParamInfo:
+          name: disable_notification
+          in: body

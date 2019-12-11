@@ -17,6 +17,7 @@ def pluginDir = getProperty("/projects/$pluginName/pluginDir").value
 //List of procedure steps to which the plugin configuration credentials need to be attached
 def stepsWithAttachedCredentials = [
     [procedureName: "Send Notification", stepName: "Send Notification"],
+    [procedureName: "Send Sticker", stepName: "Send Sticker"],
 
 ]
 
@@ -43,7 +44,7 @@ project pluginName, {
 def retainedProperties = []
 
 upgrade(upgradeAction, pluginName, otherPluginName, stepsWithAttachedCredentials, 'ec_plugin_cfgs', retainedProperties)
-// DO NOT EDIT THIS BLOCK === promote_autogen ends, checksum: 96bb79338906d100057ab124df8d3fbe ===
+// DO NOT EDIT THIS BLOCK === promote_autogen ends, checksum: 117a03db6cd50d4a08f8225bebe25ec4 ===
 // Do not edit the code above this line
 
 project pluginName, {

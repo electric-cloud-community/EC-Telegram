@@ -1,4 +1,5 @@
 package FlowPlugin::Telegram;
+use JSON;
 use strict;
 use warnings;
 use base qw/FlowPDF/;
@@ -112,6 +113,49 @@ sub sendNotificationStep {
         summary    => 'Sent notification',
         jobSummary => 'Success',
     }
+}
+
+# Auto-generated method for the procedure Send Sticker/Send Sticker
+# Add your code into this method and it will be called when step runs
+# Parameter: config
+# Parameter: chatId
+# Parameter: stickerId
+# Parameter: silent
+
+sub sendSticker {
+    my ($pluginObject) = @_;
+
+    my $context = $pluginObject->getContext();
+    my $params = $context->getRuntimeParameters();
+
+    my $ECTelegramRESTClient = $pluginObject->getECTelegramRESTClient;
+    # If you have changed your parameters in the procedure declaration, add/remove them here
+    my %restParams = (
+        'chat_id' => $params->{'chatId'},
+        'sticker' => $params->{'stickerId'},
+        'disable_notification' => $params->{'silent'},
+    );
+    my $response = $ECTelegramRESTClient->sendSticker(%restParams);
+    logInfo("Got response from the server: ", $response);
+
+    my $stepResult = $context->newStepResult;
+
+    $stepResult->apply();
+}
+
+# This method is used to access auto-generated REST client.
+sub getECTelegramRESTClient {
+    my ($self) = @_;
+
+    my $context = $self->getContext();
+    my $config = $context->getRuntimeParameters();
+
+    require FlowPlugin::ECTelegramRESTClient;
+    my $client = FlowPlugin::ECTelegramRESTClient->new(
+        $config->{endpoint},
+        bot_token => $config->{password},
+    );
+    return $client;
 }
 ## === step ends ===
 # Please do not remove the marker above, it is used to place new procedures into this file.
